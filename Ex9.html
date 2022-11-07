@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script> 
+        var app = angular.module('myapp',[]);
+        app.controller("mycontrol",function($scope){
+            $scope.passpattern = /^[a-zA-Z0-9]{8,}$/;
+        })
+    </script>
+</head>
+
+<body align="center" ng-app="myapp" ng-controller="mycontrol" >
+    <h1 style="color:blue; text-align:center;">User Registration Form</h1>
+    <form name="myform" style="color:blue;">
+        Name<span style="color:red;">*</span>&nbsp;<input type="text" name="myname" ng-model="name" required>
+        <span ng-show="myform.myname.$dirty && myform.myname.$error.required"style="color:red;">Name is required</span>
+        <br><br>
+
+        Password:<span style="color:red;">*</span>&nbsp;<input type="password" name="mypass" ng-model="pass" required ng-pattern="passpattern">
+        <span ng-show="myform.mypass.$dirty && myform.mypass.$error.required"style="color:red;">Password is required</span>
+        <span ng-show="myform.mypass.$dirty && myform.mypass.$error.pattern"style="color:red;">Incorrect Password Format </span>
+        <br><br>
+
+        Number:<span style="color:red;">*</span>&nbsp;<input type="tel" name="mynum" ng-model="mynum" required>
+        <span ng-show="myform.mynum.$dirty && myform.mynum.$error.required"style="color:red;">Password is required</span>
+        <span ng-show="myform.mynum.$dirty && myform.mynum.$error.pattern"style="color:red;">Incorrect Number Format </span>
+        <br><br>
+
+        Age:<span style="color:red;">*</span>&nbsp;<input type="text" name="myage" ng-model="age" required>
+        <span ng-show="myform.myname.$dirty && myform.myname.$error.required"style="color:red;">Age is required</span>
+        <br><br>
+
+        Email:<span style="color:red;">*</span>&nbsp;<input type="email" name="myemail" ng-model="email">
+        <span ng-show="myform.myemail.$dirty && myform.myemail.$error.required" style="color:red;">Email is required</span>
+        <span ng-show="myform.myemail.$dirty && myform.myemail.$error.email" style="color:red;">Email format error</span>
+        <br><br>
+
+        Gender:<span style="color:red;">*</span>&nbsp;
+        <input type="radio" value="male" name="gender" ng-model="gender">
+       <label for="male">male</label>
+       <input type="radio" value="female" name="gender" ng-model="gender">
+        <label for="female">female</label><span ng-show="myform.gender.$dirty && myform.gender.$error.required" style="color:red;">Gender is required</span><br><br>
+
+        State:<span style="color:red;">*</span>&nbsp; <select  id="state" name="state" ng-model="state">
+            <option value="kerala">Kerala</option>
+            <option value="west bengal">West Bengal</option>
+            <option value="karnataka">Karnataka</option>
+            <option value="tamil nadu">Tamil Nadu</option>
+          </select><span ng-show="myform.state.$dirty && myform.state.$error.required" style="color:red;">Gender is required</span><br><br>
+
+        <br><br><button>Submit</button>
+    </form>
+</body>
+</html>
